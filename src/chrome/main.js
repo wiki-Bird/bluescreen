@@ -40,7 +40,7 @@ function removeVerifiedTweetsAndReplies() {
         const parent = tweetElement.parentElement;
         const isFirstCell = parent.firstElementChild === tweetElement;
   
-        if (!isFirstCell) {
+        if (!isFirstCell || timelineName != "Replies") {
           tweetElement.style.visibility = 'hidden';
           tweetElement.style.height = '0';
           tweetElement.style.margin = '0';
