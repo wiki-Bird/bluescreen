@@ -3,3 +3,8 @@
 <h1 align="center"> BlueScreen </h1>
 
 Browser extension which hides Blue verified accounts from your feed and replies.
+
+
+### Privacy: 
+
+No data is collected/shared.

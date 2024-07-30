@@ -2,24 +2,24 @@
 const extensionApi = (typeof browser !== 'undefined') ? browser : chrome;
 
 function getCheckboxStates() {
-  return extensionApi.storage.local.get(['hideFeed', 'hideReplies'])
-    .then(result => {
-      //console.log(`Raw storage values: Following: ${result.hideFollowing}, Feed: ${result.hideFeed}, Replies: ${result.hideReplies}`);
-      
-      return {
-        // hideFollowing: result.hideFollowing,
-        hideFeed: result.hideFeed,
-        hideReplies: result.hideReplies
-      };
-    })
-    .catch(error => {
-      console.error('Error retrieving checkbox states:', error);
-      return {
-        // hideFollowing: false,
-        hideFeed: false,
-        hideReplies: false
-      };
+  return new Promise((resolve, reject) => {
+    extensionApi.storage.local.get(['hideFeed', 'hideReplies'], result => {
+      if (extensionApi.runtime.lastError) {
+        reject(extensionApi.runtime.lastError);
+      } else {
+        resolve({
+          hideFeed: result.hideFeed,
+          hideReplies: result.hideReplies
+        });
+      }
     });
+  }).catch(error => {
+    console.error('Error retrieving checkbox states:', error);
+    return {
+      hideFeed: false,
+      hideReplies: false
+    };
+  });
 }
 
 function removeVerifiedTweetsAndReplies() {
@@ -93,6 +93,3 @@ if (document.readyState === 'loading') {
 } else {
   setupObserver();
 }
-
-// Initial run
-removeVerifiedTweetsAndReplies();
