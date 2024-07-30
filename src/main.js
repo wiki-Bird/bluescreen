@@ -1,13 +1,14 @@
 // Use browser or chrome API depending on the environment
 const extensionApi = (typeof browser !== 'undefined') ? browser : chrome;
 
+
 function getCheckboxStates() {
-  return extensionApi.storage.local.get(['hideFeed', 'hideReplies'])
+  return browser.storage.local.get(['hideFollowing', 'hideFeed', 'hideReplies'])
     .then(result => {
       //console.log(`Raw storage values: Following: ${result.hideFollowing}, Feed: ${result.hideFeed}, Replies: ${result.hideReplies}`);
       
       return {
-        // hideFollowing: result.hideFollowing,
+        hideFollowing: result.hideFollowing,
         hideFeed: result.hideFeed,
         hideReplies: result.hideReplies
       };
@@ -15,7 +16,7 @@ function getCheckboxStates() {
     .catch(error => {
       console.error('Error retrieving checkbox states:', error);
       return {
-        // hideFollowing: false,
+        hideFollowing: false,
         hideFeed: false,
         hideReplies: false
       };
@@ -86,6 +87,8 @@ function setupObserver() {
 function log(message) {
   console.log(`[Hide Verified Tweets] ${message}`);
 }
+
+log("Script loaded");
 
 // Run the setup when the page loads
 if (document.readyState === 'loading') {

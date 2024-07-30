@@ -1,7 +1,6 @@
 // Use browser or chrome API depending on the environment
 const extensionApi = (typeof browser !== 'undefined') ? browser : chrome;
 
-
 function getCheckboxStates() {
   return extensionApi.storage.local.get(['hideFeed', 'hideReplies'])
     .then(result => {
@@ -28,16 +27,11 @@ function removeVerifiedTweetsAndReplies() {
   const repliesTimeline = document.querySelector('[aria-label="Timeline: Conversation"]');
   const homeTimeline = document.querySelector('[aria-label="Timeline: Your Home Timeline"]');
 
-  log(`Replies Timeline found: ${!!repliesTimeline}`);
-  log(`Home Timeline found: ${!!homeTimeline}`);
-
   function removeVerifiedFromTimeline(timeline, timelineName) {
     if (!timeline) {
-      log(`${timelineName} timeline not found`);
       return;
     }
     const verifiedBadges = timeline.querySelectorAll('[aria-label="Verified account"]');
-    log(`Found ${verifiedBadges.length} verified badges in ${timelineName} timeline`);
   
     verifiedBadges.forEach((verifiedBadge, index) => {
       let tweetElement = verifiedBadge.closest('[data-testid="cellInnerDiv"]');
@@ -47,7 +41,6 @@ function removeVerifiedTweetsAndReplies() {
         const isFirstCell = parent.firstElementChild === tweetElement;
   
         if (!isFirstCell) {
-          log(`Hiding tweet ${index + 1} in ${timelineName} timeline`);
           tweetElement.style.visibility = 'hidden';
           tweetElement.style.height = '0';
           tweetElement.style.margin = '0';
@@ -93,8 +86,6 @@ function setupObserver() {
 function log(message) {
   console.log(`[Hide Verified Tweets] ${message}`);
 }
-
-log("Script loaded");
 
 // Run the setup when the page loads
 if (document.readyState === 'loading') {
