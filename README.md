@@ -4,6 +4,11 @@
 
 Browser extension which hides Blue verified accounts from your feed and replies.
 
+## Download
+
+[Firefox](https://addons.mozilla.org/en-US/firefox/addon/blue-screen/)
+Chrome (Coming soon if they accept it lol)
+
 
 ### Privacy: 
 
