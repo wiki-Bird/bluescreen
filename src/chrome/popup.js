@@ -2,12 +2,12 @@
 const browserApi = (typeof browser !== 'undefined') ? browser : chrome;
 
 function saveCheckboxState() {
-  const hideFollowingCheckbox = document.getElementById('hideFollowing');
+  // const hideFollowingCheckbox = document.getElementById('hideFollowing');
   const hideFeedCheckbox = document.getElementById('hideFeed');
   const hideRepliesCheckbox = document.getElementById('hideReplies');
 
   browserApi.storage.local.set({
-    hideFollowing: hideFollowingCheckbox.checked,
+    // hideFollowing: hideFollowingCheckbox.checked,
     hideFeed: hideFeedCheckbox.checked,
     hideReplies: hideRepliesCheckbox.checked
   }, function () {
@@ -20,11 +20,11 @@ function restoreCheckboxState() {
     hideFeed: false,
     hideReplies: false
   }, function(items) {
-    const hideFollowingCheckbox = document.getElementById('hideFollowing');
+    // const hideFollowingCheckbox = document.getElementById('hideFollowing');
     const hideFeedCheckbox = document.getElementById('hideFeed');
     const hideRepliesCheckbox = document.getElementById('hideReplies');
 
-    hideFollowingCheckbox.checked = items.hideFollowing;
+    // hideFollowingCheckbox.checked = items.hideFollowing;
     hideFeedCheckbox.checked = items.hideFeed;
     hideRepliesCheckbox.checked = items.hideReplies;
   });
@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', function () {
   restoreCheckboxState();
 
   // Attach event listeners to checkboxes to save state on change
-  const hideFollowingCheckbox = document.getElementById('hideFollowing');
+  // const hideFollowingCheckbox = document.getElementById('hideFollowing');
   const hideFeedCheckbox = document.getElementById('hideFeed');
   const hideRepliesCheckbox = document.getElementById('hideReplies');
 
-  hideFollowingCheckbox.addEventListener('change', saveCheckboxState);
+  // hideFollowingCheckbox.addEventListener('change', saveCheckboxState);
   hideFeedCheckbox.addEventListener('change', saveCheckboxState);
   hideRepliesCheckbox.addEventListener('change', saveCheckboxState);
 });

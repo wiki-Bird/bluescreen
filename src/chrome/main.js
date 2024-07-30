@@ -3,12 +3,12 @@ const extensionApi = (typeof browser !== 'undefined') ? browser : chrome;
 
 
 function getCheckboxStates() {
-  return browser.storage.local.get(['hideFollowing', 'hideFeed', 'hideReplies'])
+  return extensionApi.storage.local.get(['hideFeed', 'hideReplies'])
     .then(result => {
       //console.log(`Raw storage values: Following: ${result.hideFollowing}, Feed: ${result.hideFeed}, Replies: ${result.hideReplies}`);
       
       return {
-        hideFollowing: result.hideFollowing,
+        // hideFollowing: result.hideFollowing,
         hideFeed: result.hideFeed,
         hideReplies: result.hideReplies
       };
@@ -16,7 +16,7 @@ function getCheckboxStates() {
     .catch(error => {
       console.error('Error retrieving checkbox states:', error);
       return {
-        hideFollowing: false,
+        // hideFollowing: false,
         hideFeed: false,
         hideReplies: false
       };

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BlueScreen</title>
+  <script src="popup.js"></script>
+
+  <style>
+      body {
+         font-family: 'Roboto', Arial, sans-serif;
+         font-size: 1rem;
+         padding: 10px;
+         width:200px;
+      }
+      #logo-image {
+         height: 45px;
+         margin-right: 10px;
+      }
+      #version {
+         font-weight: normal;
+         font-size: 0.8rem;
+      }
+      .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+      label {
+         border-bottom: 1px solid #ddd;
+         display: flex;
+         align-items: center;
+         padding: 8px 0  8px 0;
+         text-decoration: none;
+         color: #333;
+         display: block;
+         display: flex;
+         align-items: center;
+         width: 100%;
+      }
+      label:last-child {
+         border-bottom: none;
+      }
+
+      .footer {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        opacity: 80%;
+      }
+      .footer a {
+        text-decoration: none;
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      .footer a img {
+        width: 1rem;
+        margin-right: 3px;
+      }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div class="title">
+      <img src="images//iconsColor/icon48.png" id="logo-image">
+      <div>
+        BlueScreen<br>
+        <span id="version">v1.0.0</span>
+      </div>
+    </div>
+    <div class="checkboxes">
+      <!-- <label for="hideFollowing"><input type="checkbox" id="hideFollowing"> Hide Following</label> -->
+      <label for="hideFeed"><input type="checkbox" id="hideFeed"> Hide Feed</label>
+      <label for="hideReplies"><input type="checkbox" id="hideReplies"> Hide Replies</label>
+    </div>
+    <div class="footer">
+        <a href="https://github.com/wiki-Bird/bluescreen" target="_blank"><img src="images/icons/git.svg">GitHub</a>
+        <a href="mailto:bluescreen@ramiels.me" target="_blank"><img src="images/icons/mail.png">Contact</a>
+        <a href="https://ramiels.me/" target="_blank"><img src="images/icons/ramiel.png">ramiel</a>
+    </div>
+  </div>
+</body>
+</html>
