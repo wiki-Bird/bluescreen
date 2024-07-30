@@ -1,4 +1,4 @@
-<p align="center"><img width="100" alt="BlueScreen Logo" src="./src/images/logo/blueClear.png"></p>
+<p align="center"><img width="100" alt="BlueScreen Logo" src="./src/chrome/images/logo/blueClear.png"></p>
 
 <h1 align="center"> BlueScreen </h1>
 
