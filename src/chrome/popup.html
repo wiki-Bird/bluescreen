@@ -27,23 +27,18 @@
         margin-bottom: 15px;
       }
       label {
-         border-bottom: 1px solid #ddd;
          display: flex;
          align-items: center;
-         padding: 8px 0  8px 0;
+         padding: 0;
+         margin: 0;
          text-decoration: none;
          color: #333;
-         display: block;
-         display: flex;
          align-items: center;
-         width: 100%;
-      }
-      label:last-child {
-         border-bottom: none;
+         /* width: 100%; */
       }
 
       .footer {
-        margin-top: 10px;
+        margin-top: 13px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -66,6 +61,23 @@
         width: 1rem;
         margin-right: 3px;
       }
+      .hidingBoxes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; 
+        margin-top: 10px;
+      }
+      .checkboxes h3 {
+        margin: 20px 0 0 0;
+      }
+      .hidingOtherFeatures label {
+         border-bottom: 1px solid #ddd;
+         padding: 8px 0 8px 0;
+         width: 100%;
+      }
+      .hidingOtherFeatures label:last-child {
+         border-bottom: none;
+      }
   </style>
 </head>
 <body>
@@ -74,13 +86,20 @@
       <img src="images/iconsColor/icon48.png" id="logo-image">
       <div>
         BlueScreen<br>
-        <span id="version">v1.0.3</span>
+        <span id="version">v1.0.4</span>
       </div>
     </div>
     <div class="checkboxes">
-      <!-- <label for="hideFollowing"><input type="checkbox" id="hideFollowing"> Hide Following</label> -->
-      <label for="hideFeed"><input type="checkbox" id="hideFeed"> Hide Feed</label>
-      <label for="hideReplies"><input type="checkbox" id="hideReplies"> Hide Replies</label>
+      <h3>Screen Blue from</h3>
+      <div class="hidingBoxes">
+        <label for="hideFeed"><input type="checkbox" id="hideFeed"> Feed</label>
+        <label for="hideReplies"><input type="checkbox" id="hideReplies"> Replies</label>
+      </div>
+      <h3>Other features</h3>
+      <div class="hidingOtherFeatures">
+        <label for="hideAds"><input type="checkbox" id="hideAds"> Hide Blue ads</label>
+        <!-- <label for="hideFollowing"><input type="checkbox" id="hideFollowing"> See followed </label> -->
+      </div>
     </div>
     <div class="footer">
         <a href="https://github.com/wiki-Bird/bluescreen" target="_blank"><img src="images/icons/git.svg">GitHub</a>

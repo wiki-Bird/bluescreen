@@ -13,6 +13,6 @@
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/blue-screen/)
 - [Chrome](https://chromewebstore.google.com/detail/bluescreen/nogankkoicghipdhohicocdeajcpndao)
 
-### Privacy: 
+## Privacy: 
 
 No data is collected/shared.

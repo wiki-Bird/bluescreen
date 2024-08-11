@@ -3,13 +3,14 @@ const extensionApi = (typeof browser !== 'undefined') ? browser : chrome;
 
 function getCheckboxStates() {
   return new Promise((resolve, reject) => {
-    extensionApi.storage.local.get(['hideFeed', 'hideReplies'], result => {
+    extensionApi.storage.local.get(['hideFeed', 'hideReplies', 'hideAds'], result => {
       if (extensionApi.runtime.lastError) {
         reject(extensionApi.runtime.lastError);
       } else {
         resolve({
           hideFeed: result.hideFeed,
-          hideReplies: result.hideReplies
+          hideReplies: result.hideReplies,
+          hideAds: result.hideAds
         });
       }
     });
@@ -17,7 +18,8 @@ function getCheckboxStates() {
     console.error('Error retrieving checkbox states:', error);
     return {
       hideFeed: false,
-      hideReplies: false
+      hideReplies: false,
+      hideAds: false
     };
   });
 }
@@ -58,6 +60,7 @@ function removeVerifiedTweetsAndReplies() {
     getCheckboxStates().then(checkboxStates => {
       if (checkboxStates.hideReplies) removeVerifiedFromTimeline(repliesTimeline, "Replies");
       if (checkboxStates.hideFeed) removeVerifiedFromTimeline(homeTimeline, "Home");
+      // log(`removing replies ${checkboxStates.hideFeed}`);
     }).catch(error => {
       console.error('Error handling checkbox states:', error);
     });
@@ -66,15 +69,49 @@ function removeVerifiedTweetsAndReplies() {
   handleCheckboxStates();
 }
 
+// Function to remove ads from sidebar and profile
+function removeExtraContent() {
+  function removeAds() {
+    const sidebarPremium = document.querySelector('[data-testid="premium-signup-tab"]');
+    const sidebarGrok  = document.querySelector('[aria-label="Grok"]');
+    const profileGetVerified = document.querySelector('[href="/i/premium_sign_up"]');
+    const subToPremiumRightside = document.querySelector('[aria-label="Subscribe to Premium"]');
+
+    if (sidebarPremium) {
+      sidebarPremium.remove();
+    }
+    if (sidebarGrok) {
+      sidebarGrok.remove();
+    }
+    if (profileGetVerified) {
+      profileGetVerified.remove();
+    }
+    if (subToPremiumRightside.parentNode) {
+      subToPremiumRightside.parentNode.remove();
+    }
+  }
+
+  function handleCheckboxStates() {
+    getCheckboxStates().then(checkboxStates => {
+      if (checkboxStates.hideAds) removeAds();
+    }).catch(error => {
+      console.error('Error handling checkbox states:', error);
+    });
+  }
+  handleCheckboxStates();
+}
+
 // Function to set up the MutationObserver
 function setupObserver() {
-  const targetNode = document.body;
+  const targetNode = document.querySelector('[id="react-root"]');
+
   const config = { childList: true, subtree: true };
 
   const callback = function(mutationsList, observer) {
     for(let mutation of mutationsList) {
       if (mutation.type === 'childList') {
         removeVerifiedTweetsAndReplies();
+        removeExtraContent();
       }
     }
   };
