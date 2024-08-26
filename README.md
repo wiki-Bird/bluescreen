@@ -10,9 +10,31 @@
 
 ## Download
 
-- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/blue-screen/)
-- [Chrome](https://chromewebstore.google.com/detail/bluescreen/nogankkoicghipdhohicocdeajcpndao)
+<a href="https://chromewebstore.google.com/detail/bluescreen/nogankkoicghipdhohicocdeajcpndao" target="_blank" rel="noopener noreferrer"><img src="./chdl.png" width="160" /></a>
+<a href="https://addons.mozilla.org/en-US/firefox/addon/blue-screen/" target="_blank" rel="noopener noreferrer"><img src="./ffdl.png" width="160" /></a>
+
+<!-- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/blue-screen/)
+[Chrome](https://chromewebstore.google.com/detail/bluescreen/nogankkoicghipdhohicocdeajcpndao) -->
+
+## Example
+
+![BlueScreen Popup](./example.png)
+
 
 ## Privacy: 
 
 No data is collected/shared.
+
+## Changelog:
+
+### 1.0.5
+- Now includes the following as ads;
+    - "Subscribe to write longer posts" right sidebar div
+    - "Verified Orgs" left nav link
+- Added "Screened Tweets" counter to the popup menu
+- Moved version number behind "bbb" combo
+
+### 1.0.4
+- Added hidden logo change when pressing "bbb" in the popup menu
+- Added ad blocking for Twitter Blue ads
+- Rearranged popup menu
