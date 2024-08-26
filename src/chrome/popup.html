@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>BlueScreen</title>
   <script src="popup.js"></script>
 
@@ -15,7 +16,7 @@
          height: 45px;
          margin-right: 10px;
       }
-      #version {
+      .headerText span {
          font-weight: normal;
          font-size: 0.8rem;
       }
@@ -78,15 +79,19 @@
       .hidingOtherFeatures label:last-child {
          border-bottom: none;
       }
+      #version {
+        display: none;
+      }
   </style>
 </head>
 <body>
   <div class="outer">
     <div class="title">
       <img src="images/iconsColor/icon48.png" id="logo-image">
-      <div>
+      <div class="headerText">
         BlueScreen<br>
-        <span id="version">v1.0.4</span>
+        <span id="blocked-count-text"><span id="blocked-count">0</span> tweets screened</span><br>
+        <span id="version">v1.0.5</span> 
       </div>
     </div>
     <div class="checkboxes">

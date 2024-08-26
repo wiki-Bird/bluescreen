@@ -47,6 +47,9 @@ function removeVerifiedTweetsAndReplies() {
           tweetElement.style.height = '0';
           tweetElement.style.margin = '0';
           tweetElement.style.padding = '0';
+
+          // Increment blockedCount in localStorage
+          incrementBlockedCount();
         } else {
           log(`Skipping hiding of first cellInnerDiv in ${timelineName} timeline`);
         }
@@ -74,8 +77,10 @@ function removeExtraContent() {
   function removeAds() {
     const sidebarPremium = document.querySelector('[data-testid="premium-signup-tab"]');
     const sidebarGrok  = document.querySelector('[aria-label="Grok"]');
+    const sidebarVerifiedOrgs = document.querySelector('[aria-label="Verified Orgs"]');
     const profileGetVerified = document.querySelector('[href="/i/premium_sign_up"]');
-    const subToPremiumRightside = document.querySelector('[aria-label="Subscribe to Premium"]');
+    const rightsideSubToPremium = document.querySelector('[aria-label="Subscribe to Premium"]');
+    const rightsideLongPosts = document.querySelector('[aria-label="Subscribe to Premium to write your own longer posts"]');
 
     if (sidebarPremium) {
       sidebarPremium.remove();
@@ -83,11 +88,17 @@ function removeExtraContent() {
     if (sidebarGrok) {
       sidebarGrok.remove();
     }
+    if (sidebarVerifiedOrgs) {
+      sidebarVerifiedOrgs.remove();
+    }
     if (profileGetVerified) {
       profileGetVerified.remove();
     }
-    if (subToPremiumRightside.parentNode) {
-      subToPremiumRightside.parentNode.remove();
+    if (rightsideSubToPremium && rightsideSubToPremium.parentNode) {
+      rightsideSubToPremium.parentNode.remove();
+    }
+    if (rightsideLongPosts && rightsideLongPosts.parentNode) {
+      rightsideLongPosts.parentNode.remove();
     }
   }
 
@@ -118,6 +129,18 @@ function setupObserver() {
 
   const observer = new MutationObserver(callback);
   observer.observe(targetNode, config);
+}
+
+// Increment the blocked count in the popup
+function incrementBlockedCount() {
+  extensionApi.storage.local.get({ blockedCount: 0 }, (result) => {
+    const newCount = result.blockedCount + 1;
+    extensionApi.storage.local.set({ blockedCount: newCount }, () => {
+      if (extensionApi.runtime.lastError) {
+        console.error('Error updating blocked count:', extensionApi.runtime.lastError);
+      }
+    });
+  });
 }
 
 function log(message) {
