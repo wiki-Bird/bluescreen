@@ -27,6 +27,11 @@ No data is collected/shared.
 
 ## Changelog:
 
+### 1.0.6
+- Changed default settings to hide all verified accounts & ads
+- Will now show replies by the original poster, even if they are verified
+- Popup menu now rounds the screened count
+
 ### 1.0.5
 - Now includes the following as ads;
     - "Subscribe to write longer posts" right sidebar div

@@ -17,14 +17,15 @@ function getCheckboxStates() {
   }).catch(error => {
     console.error('Error retrieving checkbox states:', error);
     return {
-      hideFeed: false,
-      hideReplies: false,
-      hideAds: false
+      hideFeed: true,
+      hideReplies: true,
+      hideAds: true
     };
   });
 }
 
 function removeVerifiedTweetsAndReplies() {
+  let authorName = "";
   // Select the timelines for replies and home feed
   const repliesTimeline = document.querySelector('[aria-label="Timeline: Conversation"]');
   const homeTimeline = document.querySelector('[aria-label="Timeline: Your Home Timeline"]');
@@ -41,8 +42,22 @@ function removeVerifiedTweetsAndReplies() {
         // Check if this is the first cellInnerDiv in its parent
         const parent = tweetElement.parentElement;
         const isFirstCell = parent.firstElementChild === tweetElement;
+
+        // Get the username of the author of the original tweet
+        if (isFirstCell || timelineName == "Replies") {
+          const firstCellUsernameElement = parent.querySelector('[data-testid="cellInnerDiv"]:first-child [href^="/"][role="link"]');
+          authorName = firstCellUsernameElement ? firstCellUsernameElement.getAttribute('href').split('/')[1] : null;
+        }
   
         if (!isFirstCell || timelineName != "Replies") {
+          // Extract the username of the tweet's author
+          const usernameElement = tweetElement.querySelector('[href^="/"][role="link"]');
+          const username = usernameElement ? usernameElement.getAttribute('href').split('/')[1] : null;
+          // Don't hide tweet's from the same author as the first tweet
+          if (username === authorName) {
+            return;
+          }
+
           tweetElement.style.visibility = 'hidden';
           tweetElement.style.height = '0';
           tweetElement.style.margin = '0';

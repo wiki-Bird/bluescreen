@@ -20,9 +20,9 @@ function saveCheckboxState() {
 function restoreCheckboxState() {
   browserApi.storage.local.get({
     hideFollowing: false,
-    hideFeed: false,
-    hideReplies: false,
-    hideAds: false
+    hideFeed: true,
+    hideReplies: true,
+    hideAds: true
   }, function(items) {
     // const hideFollowingCheckbox = document.getElementById('hideFollowing');
     const hideFeedCheckbox = document.getElementById('hideFeed');
@@ -36,23 +36,21 @@ function restoreCheckboxState() {
   });
 }
 
-// function getBlockedCount() {
-//   browserApi.storage.local.get({
-//     blockedCount: 0
-//   }, function(items) {
-//     const blockedCount = items.blockedCount;
-//     const blockedCountElement = document.getElementById('blocked-count');
-//     blockedCountElement.textContent = blockedCount;
-//   });
-// }
-
 function updateBlockedCountDisplay() {
   browserApi.storage.local.get({ blockedCount: 0 }, (result) => {
     const blockedCountElement = document.getElementById('blocked-count');
     const infoContainer = document.querySelector('.info-container');
     const scrollingText = document.querySelector('.scrolling-text');
     
-    blockedCountElement.textContent = result.blockedCount;
+    let blockedCount = result.blockedCount;
+    
+    if (blockedCount >= 1000000) {
+      blockedCount = (blockedCount / 1000000).toFixed(1) + 'm';
+    } else if (blockedCount >= 1000) {
+      blockedCount = (blockedCount / 1000).toFixed(1) + 'k';
+    } 
+
+    blockedCountElement.textContent = blockedCount;
     
     // Check if scrolling is necessary
     if (scrollingText.offsetWidth > infoContainer.offsetWidth) {
