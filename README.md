@@ -27,6 +27,9 @@ No data is collected/shared.
 
 ## Changelog:
 
+### 1.0.7
+- Now hides "Business" subscribe button in the left sidebar
+
 ### 1.0.6
 - Changed default settings to hide all verified accounts & ads
 - Will now show replies by the original poster, even if they are verified

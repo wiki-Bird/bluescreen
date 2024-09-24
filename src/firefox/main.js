@@ -93,6 +93,7 @@ function removeExtraContent() {
     const sidebarPremium = document.querySelector('[data-testid="premium-signup-tab"]');
     const sidebarGrok  = document.querySelector('[aria-label="Grok"]');
     const sidebarVerifiedOrgs = document.querySelector('[aria-label="Verified Orgs"]');
+    const sidebarBusiness = document.querySelector('[aria-label="Business"]');
     const profileGetVerified = document.querySelector('[href="/i/premium_sign_up"]');
     const rightsideSubToPremium = document.querySelector('[aria-label="Subscribe to Premium"]');
     const rightsideLongPosts = document.querySelector('[aria-label="Subscribe to Premium to write your own longer posts"]');
@@ -105,6 +106,9 @@ function removeExtraContent() {
     }
     if (sidebarVerifiedOrgs) {
       sidebarVerifiedOrgs.remove();
+    }
+    if (sidebarBusiness) {
+      sidebarBusiness.remove();
     }
     if (profileGetVerified) {
       profileGetVerified.remove();
