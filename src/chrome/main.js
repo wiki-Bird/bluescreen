@@ -97,6 +97,7 @@ function removeExtraContent() {
     const profileGetVerified = document.querySelector('[href="/i/premium_sign_up"]');
     const rightsideSubToPremium = document.querySelector('[aria-label="Subscribe to Premium"]');
     const rightsideLongPosts = document.querySelector('[aria-label="Subscribe to Premium to write your own longer posts"]');
+    const rightsideDiscount = document.querySelector('[aria-label="Expiring soon!"]');
 
     if (sidebarPremium) {
       sidebarPremium.remove();
@@ -118,6 +119,9 @@ function removeExtraContent() {
     }
     if (rightsideLongPosts && rightsideLongPosts.parentNode) {
       rightsideLongPosts.parentNode.remove();
+    }
+    if (rightsideDiscount && rightsideDiscount.parentNode.parentNode) {
+      rightsideDiscount.parentNode.parentNode.remove();
     }
   }
 

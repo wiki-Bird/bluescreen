@@ -27,6 +27,9 @@ No data is collected/shared.
 
 ## Changelog:
 
+### 1.0.8
+- Now hides 'Expiring Soon' Blue offer in the sidebar
+
 ### 1.0.7
 - Now hides "Business" subscribe button in the left sidebar
 
